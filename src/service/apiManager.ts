@@ -18,8 +18,9 @@ export const apiManager = async (
   header: AxiosRequestConfig['headers'] = {},
   baseURL = REACT_APP_BASE_API_URL
 ): Promise<AxiosResponse> => {
-  const defaultHeaders: AxiosRequestConfig['headers'] = {
+  const defaultHeaders = {
     ...axiosInstance.defaults.headers.common,
+    ...header,
   };
 
   try {
@@ -28,7 +29,7 @@ export const apiManager = async (
       url: url,
       data: body,
       baseURL: baseURL,
-      headers: { ...defaultHeaders, header },
+      headers: defaultHeaders,
     });
   } catch (e) {
     console.error('API Error', e);
