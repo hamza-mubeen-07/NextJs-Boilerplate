@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getPetsList } from '@/store/pets/petThunks';
+import { getPetsList } from './petThunks';
 
 export interface iPets {
   name: string;

@@ -1,2 +1,2 @@
-export const REACT_APP_BASE_API_URL =
-  process.env.REACT_APP_BASE_API_URL ?? 'https://pokeapi.co/';
+export const NEXT_PUBLIC_BACKEND_BASE_URL =
+  process.env.NEXT_PUBLIC_BACKEND_BASE_URL;

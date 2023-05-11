@@ -1,14 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { iLoginPageContent } from '@/types/contentTypes';
-import { getLoginPageContent } from '@/store/content/content-thunk';
 import { rehydrateObject } from '@/utils/commonUtils';
 
 export interface iContentStoreState {
-  loginContent: iLoginPageContent;
+  loginPage: iLoginPageContent;
 }
 
 const initialState: iContentStoreState = {
-  loginContent: {} as iLoginPageContent,
+  loginPage: {} as iLoginPageContent,
 };
 
 const contentSlice = createSlice({
@@ -22,14 +21,17 @@ const contentSlice = createSlice({
       //   state[key as iKey] = action.payload[key as iKey];
       // }
     },
+    addLoginContent(state, action: PayloadAction<iLoginPageContent>) {
+      state.loginPage = action.payload;
+    },
   },
-  extraReducers(builder) {
-    builder.addCase(getLoginPageContent.fulfilled, (state, action) => {
-      state.loginContent = action.payload;
-    });
-  },
+  // extraReducers(builder) {
+  //   builder.addCase(getLoginPageContent.fulfilled, (state, action) => {
+  //     state.loginPage = action.payload;
+  //   });
+  // },
 });
 
-export const { rehydrateContent } = contentSlice.actions;
+export const { rehydrateContent, addLoginContent } = contentSlice.actions;
 
 export default contentSlice.reducer;

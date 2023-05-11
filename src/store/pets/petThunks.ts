@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { iThunkApi } from '@/types/commonTypes';
 import { apiManager } from '@/service/apiManager';
 import { API_ENDPOINTS } from '@/constants/apiEndpoints';
-import { iPets } from '@/store/pets/petSlice';
+import { iPets } from './petSlice';
 
 export const getPetsList = createAsyncThunk<iPets[], undefined, iThunkApi>(
   'pet/getPetsList',

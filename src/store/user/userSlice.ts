@@ -1,6 +1,6 @@
 import { iUserDetails } from '@/types/userTypes';
 import { createSlice } from '@reduxjs/toolkit';
-import { getUserDetailsThunk } from '@/store/user/userThunk';
+import { getUserDetailsThunk } from './userThunk';
 
 export interface iUserStoreState {
   userDetails: iUserDetails;

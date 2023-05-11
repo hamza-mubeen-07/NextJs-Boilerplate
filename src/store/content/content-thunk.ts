@@ -1,18 +1,22 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { iThunkApi } from '@/types/commonTypes';
 import { apiManager } from '@/service/apiManager';
-import { API_ENDPOINTS } from '@/constants/apiEndpoints';
 import { iLoginPageContent } from '@/types/contentTypes';
+import { CONTENT_API_ENDPOINTS } from '@/constants/contentApiEndpoint';
 
 export const getLoginPageContent = createAsyncThunk<
   iLoginPageContent,
-  undefined,
+  string | undefined,
   iThunkApi
->('pet/getPetsList', async (args, thunkAPI) => {
-  const resp = await apiManager(API_ENDPOINTS.GET_PETS, {}, 'GET', {});
+>('pet/getPetsList', async (locale, thunkAPI) => {
+  const resp = await apiManager(
+    CONTENT_API_ENDPOINTS.LOGIN_PAGE(locale),
+    {},
+    'GET',
+    {}
+  );
   if (resp.data.status === false) {
     return thunkAPI.rejectWithValue(resp.data);
   }
-  console.log(resp.data);
-  return resp.data.results;
+  return resp.data.data.attributes;
 });

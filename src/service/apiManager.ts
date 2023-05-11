@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { REACT_APP_BASE_API_URL } from '@/constants/envVariables';
+import { NEXT_PUBLIC_BACKEND_BASE_URL } from '@/constants/envVariables';
 
 export const axiosInstance = axios.create({
-  baseURL: REACT_APP_BASE_API_URL,
+  baseURL: NEXT_PUBLIC_BACKEND_BASE_URL,
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ export const apiManager = async (
   body: BodyType,
   method: AxiosRequestConfig['method'],
   header: AxiosRequestConfig['headers'] = {},
-  baseURL = REACT_APP_BASE_API_URL
+  baseURL = NEXT_PUBLIC_BACKEND_BASE_URL
 ): Promise<AxiosResponse> => {
   const defaultHeaders = {
     ...axiosInstance.defaults.headers.common,
