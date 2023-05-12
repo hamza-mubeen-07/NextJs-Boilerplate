@@ -1,9 +1,9 @@
-import { apiManager } from '@/./service/apiManager';
-import { CONTENT_API_ENDPOINTS } from '@/./constants/contentApiEndpoint';
-import { store } from '@/./store';
-import { addLoginContent } from '@/./store/content/content-slice';
-import Provider from '@/./store/Provider';
-import LoginForm from '../src/component/loginForm';
+import { apiManager } from '@/service/apiManager';
+import { CONTENT_API_ENDPOINTS } from '@/constants/contentApiEndpoint';
+import { store } from '@/store';
+import { addLoginContent } from '@/store/content/content-slice';
+import Provider from '@/store/Provider';
+import LoginForm from '@/component/loginForm';
 
 const getLoginData = async () => {
   const resp = await apiManager(
