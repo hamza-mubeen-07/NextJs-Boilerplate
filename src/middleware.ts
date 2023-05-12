@@ -47,10 +47,6 @@ export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const currentPathnameLang = getLocalePartsFrom({ pathname });
 
-  const pathnameIsMissingValidLocale = ALLOWED_LOCALE.every((locale) => {
-    return !pathname.startsWith(`/${locale}`);
-  });
-
   if (currentPathnameLang === DEFAULT_LOCALE) {
     /* we want to REMOVE the default locale from the pathname, and later when page sent request
      with new urk without en use a rewrite so that Next will still match the correct code file as
@@ -59,12 +55,16 @@ export function middleware(request: NextRequest) {
       new URL(
         pathname.replace(
           `/${DEFAULT_LOCALE}`,
-          pathname.startsWith('/') ? '/' : ''
+          pathname.startsWith('/') && pathname.length === 3 ? '/' : ''
         ),
         request.url
       )
     );
   }
+
+  const pathnameIsMissingValidLocale = ALLOWED_LOCALE.every((locale) => {
+    return !pathname.startsWith(`/${locale}`);
+  });
 
   if (pathnameIsMissingValidLocale) {
     // rewrite it so next.js will render `/` as if it was `/en/us`
