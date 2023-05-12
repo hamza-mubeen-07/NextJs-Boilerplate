@@ -4,17 +4,19 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { useAppSelector } from '@/hooks/storeHooks';
 import { store } from '@/store';
-import { addLoginContent } from '@/store/content/content-slice';
-import { iLoginPageContent } from '@/types/contentTypes';
+import {
+  iContentStoreState,
+  rehydrateContent,
+} from '@/store/content/content-slice';
 
 const LoginForm = ({
   loginPageContent,
 }: {
-  loginPageContent: iLoginPageContent;
+  loginPageContent: iContentStoreState;
 }) => {
   const loaded = useRef(false);
   if (!loaded.current) {
-    store.dispatch(addLoginContent(loginPageContent));
+    store.dispatch(rehydrateContent(loginPageContent));
     loaded.current = true;
   }
 

@@ -10,7 +10,7 @@ export const getLoginPageContent = createAsyncThunk<
   iThunkApi
 >('pet/getPetsList', async (locale, thunkAPI) => {
   const resp = await apiManager(
-    CONTENT_API_ENDPOINTS.LOGIN_PAGE(locale),
+    CONTENT_API_ENDPOINTS.LOGIN_PAGE('en'),
     {},
     'GET',
     {}

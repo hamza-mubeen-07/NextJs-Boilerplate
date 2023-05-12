@@ -1,28 +1,15 @@
-import { apiManager } from '@/service/apiManager';
-import { CONTENT_API_ENDPOINTS } from '@/constants/contentApiEndpoint';
 import { store } from '@/store';
-import { addLoginContent } from '@/store/content/content-slice';
 import Provider from '@/store/Provider';
 import LoginForm from '@/component/loginForm';
-
-const getLoginData = async () => {
-  const resp = await apiManager(
-    CONTENT_API_ENDPOINTS.LOGIN_PAGE('en'),
-    {},
-    'GET',
-    {}
-  );
-  return resp.data.data.attributes;
-};
+import { getLoginPageContent } from '@/store/content/content-thunk';
 
 const PetListing = async () => {
-  const loginPage = await getLoginData();
-  store.dispatch(addLoginContent(loginPage));
-
+  await store.dispatch(getLoginPageContent());
+  const content = store.getState().content;
   return (
     <div>
       <Provider>
-        <LoginForm loginPageContent={loginPage} />
+        <LoginForm loginPageContent={content} />
       </Provider>
     </div>
   );
