@@ -37,6 +37,7 @@
     "@commitlint/cli": "^17.6.1",
     "@commitlint/config-conventional": "^17.6.1",
     "@types/accept-language-parser": "^1.5.3",
+    "husky": "^8.0.3",
     "prettier": "^2.8.8"
   }
 }
