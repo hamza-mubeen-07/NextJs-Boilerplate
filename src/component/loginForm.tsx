@@ -8,6 +8,7 @@ import {
   iContentStoreState,
   rehydrateContent,
 } from '@/store/content/content-slice';
+import { ROUTE_PATHS } from '@/constants/routes';
 
 const LoginForm = ({
   loginPageContent,
@@ -20,15 +21,13 @@ const LoginForm = ({
     loaded.current = true;
   }
 
-  const loginPage = useAppSelector((state) => state.content.loginPage);
+  const { loginPage } = useAppSelector((state) => state.content);
 
   return (
     <div>
       <h1> {loginPage.pageHeading} </h1>
       <h4> {loginPage.pageSubHeading} </h4>
-      <Link href="/" locale="ar">
-        Switch Lang
-      </Link>
+      <Link href={ROUTE_PATHS.HOME('ar')}>Switch Lang</Link>
     </div>
   );
 };

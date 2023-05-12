@@ -2,12 +2,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { iLoginPageContent } from '@/types/contentTypes';
 import { rehydrateObject } from '@/utils/commonUtils';
 import { getLoginPageContent } from '@/store/content/content-thunk';
+import { DEFAULT_LOCALE, iAllowedLocale } from '@/constants/commonConstant';
 
 export interface iContentStoreState {
+  lang: iAllowedLocale;
   loginPage: iLoginPageContent;
 }
 
 const initialState: iContentStoreState = {
+  lang: DEFAULT_LOCALE,
   loginPage: {} as iLoginPageContent,
 };
 
@@ -25,6 +28,9 @@ const contentSlice = createSlice({
     addLoginContent(state, action: PayloadAction<iLoginPageContent>) {
       state.loginPage = action.payload;
     },
+    updateLang(state, action: PayloadAction<iAllowedLocale>) {
+      state.lang = action.payload;
+    },
   },
   extraReducers(builder) {
     builder.addCase(getLoginPageContent.fulfilled, (state, action) => {
@@ -33,6 +39,6 @@ const contentSlice = createSlice({
   },
 });
 
-export const { rehydrateContent, addLoginContent } = contentSlice.actions;
+export const { rehydrateContent, updateLang } = contentSlice.actions;
 
 export default contentSlice.reducer;

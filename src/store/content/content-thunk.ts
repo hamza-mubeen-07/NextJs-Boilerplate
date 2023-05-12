@@ -3,14 +3,15 @@ import { iThunkApi } from '@/types/commonTypes';
 import { apiManager } from '@/service/apiManager';
 import { iLoginPageContent } from '@/types/contentTypes';
 import { CONTENT_API_ENDPOINTS } from '@/constants/contentApiEndpoint';
+import { iAllowedLocale } from '@/constants/commonConstant';
 
 export const getLoginPageContent = createAsyncThunk<
   iLoginPageContent,
-  string | undefined,
+  iAllowedLocale | undefined,
   iThunkApi
 >('pet/getPetsList', async (locale, thunkAPI) => {
   const resp = await apiManager(
-    CONTENT_API_ENDPOINTS.LOGIN_PAGE('en'),
+    CONTENT_API_ENDPOINTS.LOGIN_PAGE(locale),
     {},
     'GET',
     {}
